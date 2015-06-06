@@ -1,9 +1,16 @@
 #!/usr/bin/bash
 
-# script setup
+#######################################
+# Script variables
+#######################################
+
 VIMDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )
 
-# functions
+
+#######################################
+# Utility functions
+#######################################
+
 msg() {
     printf '%b\n' "$1" >&2
 }
@@ -46,23 +53,28 @@ lnif() {
     #debug
 }
 
+
+#######################################
+# Setup functions
+#######################################
+
 create_symlinks() {
     local source_path="$1"
     local target_path="$2"
 
-    lnif "$source_path/.vimrc"         "$target_path/.vimrc"
-    lnif "$source_path/.vimrc.bundles" "$target_path/.vimrc.bundles"
-    #lnif "$source_path/.vimrc.before"  "$target_path/.vimrc.before"
-    lnif "$source_path/.vim"           "$target_path/.vim"
-
-    #touch  "$target_path/.vimrc.local"
+    lnif "$source_path/vimrc"           "$target_path/.vimrc"
+    lnif "$source_path/vimrc.bundles"   "$target_path/.vimrc.bundles"
+    lnif "$source_path"                 "$target_path/.vim"
 
     ret="$?"
     success "Setting up vim symlinks."
     #debug
 }
 
-# Main...
+
+#######################################
+# Main
+#######################################
 
 variable_set        "HOME"
 
