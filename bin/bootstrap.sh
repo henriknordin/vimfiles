@@ -5,7 +5,7 @@
 #######################################
 
 VIMDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )
-[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
+[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/Vundle.git"
 
 #######################################
 # Utility functions
@@ -134,7 +134,7 @@ create_symlinks     "$VIMDIR" \
 #                    "$REPO_NAME"
 
 #setup_vundle        "$APP_PATH/.vimrc.bundles.default"
-sync_repo           "$HOME/.vim/bundle/vundle" \
+sync_repo           "$HOME/.vim/bundle/Vundle.vim" \
                     "$VUNDLE_URI" \
                     "master" \
                     "vundle"
