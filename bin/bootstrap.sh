@@ -139,7 +139,7 @@ sync_repo           "$HOME/.vim/bundle/vundle" \
                     "master" \
                     "vundle"
 
-setup_vundle        "$APP_PATH/.vimrc.bundles.default"
+setup_vundle        "$VIMDIR/.vimrc.bundles"
 
 ret="$?"
 
