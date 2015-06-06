@@ -5,7 +5,7 @@
 #######################################
 
 VIMDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )
-
+[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 
 #######################################
 # Utility functions
@@ -71,6 +71,44 @@ create_symlinks() {
     #debug
 }
 
+sync_repo() {
+    local repo_path="$1"
+    local repo_uri="$2"
+    local repo_branch="$3"
+    local repo_name="$4"
+
+    msg "Trying to update $repo_name"
+
+    if [ ! -e "$repo_path" ]; then
+        mkdir -p "$repo_path"
+        git clone -b "$repo_branch" "$repo_uri" "$repo_path"
+        ret="$?"
+        success "Successfully cloned $repo_name."
+    else
+        cd "$repo_path" && git pull origin "$repo_branch"
+        ret="$?"
+        success "Successfully updated $repo_name"
+    fi
+
+    #debug
+}
+
+setup_vundle() {
+    local system_shell="$SHELL"
+    export SHELL='/bin/sh'
+
+    vim \
+        -u "$1" \
+        "+set nomore" \
+        "+BundleInstall!" \
+        "+BundleClean" \
+        "+qall"
+
+    export SHELL="$system_shell"
+
+    success "Now updating/installing plugins using Vundle"
+    #debug
+}
 
 #######################################
 # Main
@@ -90,12 +128,18 @@ echo "VIMDIR: $VIMDIR"
 create_symlinks     "$VIMDIR" \
                     "$HOME"
 
-#sync_repo           "$HOME/.vim/bundle/vundle" \
-#                    "$VUNDLE_URI" \
-#                    "master" \
-#                    "vundle"
+#sync_repo           "$VIMDIR" \
+#                    "$REPO_URI" \
+#                    "$REPO_BRANCH" \
+#                    "$REPO_NAME"
 
 #setup_vundle        "$APP_PATH/.vimrc.bundles.default"
+sync_repo           "$HOME/.vim/bundle/vundle" \
+                    "$VUNDLE_URI" \
+                    "master" \
+                    "vundle"
+
+setup_vundle        "$APP_PATH/.vimrc.bundles.default"
 
 ret="$?"
 
