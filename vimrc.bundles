@@ -1,0 +1,52 @@
+
+" Setup Bundle Support {
+    " The next three lines ensure that the ~/.vim/bundle/ system works
+    filetype off
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+
+    " Bundles {
+        
+        " let Vundle manage Vundle, required
+        Plugin 'gmarik/Vundle.vim'
+
+        " Themes
+        Plugin 'altercation/vim-colors-solarized'
+        Plugin 'tpope/vim-vividchalk'
+
+        " UI
+        Plugin 'bling/vim-airline'
+
+        " General programming
+        Bundle 'scrooloose/syntastic'
+
+        " Haskell
+        Bundle 'jpalardy/vim-slime'
+        " C-c C-c -- selected text will be send to tmux session
+        " C-c v   -- reconfigure which tmux session is bound
+        if filereadable(expand("~/.vim/bundle/vim-slime/plugin/slime.vim"))    
+            let g:slime_target = "tmux"
+            let g:slime_paste_file = tempname()
+            let g:slime_default_config = {"socket_name": "default", "target_pane": "0"}
+        endif
+        Bundle 'raichoo/haskell-vim'
+
+    " }
+   
+    " All of your Plugins must be added before the following line
+    call vundle#end()               " required
+    filetype plugin indent on       " required
+    " To ignore plugin indent changes, instead use:
+    "filetype plugin on
+    "
+    " Brief help
+    " :PluginList       - lists configured plugins
+    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+    "
+    " see :h vundle for more details or wiki for FAQ
+    "
+
+" }
+
