@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+# script setup
+VIMDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )
+
+# functions
 msg() {
     printf '%b\n' "$1" >&2
 }
@@ -34,6 +38,22 @@ program_exists() {
     fi
 }
 
+create_symlinks() {
+    local source_path="$1"
+    local target_path="$2"
+
+    lnif "$source_path/.vimrc"         "$target_path/.vimrc"
+    lnif "$source_path/.vimrc.bundles" "$target_path/.vimrc.bundles"
+    #lnif "$source_path/.vimrc.before"  "$target_path/.vimrc.before"
+    lnif "$source_path/.vim"           "$target_path/.vim"
+
+    #touch  "$target_path/.vimrc.local"
+
+    ret="$?"
+    success "Setting up vim symlinks."
+    #debug
+}
+
 # Main...
 
 variable_set        "HOME"
@@ -42,10 +62,14 @@ program_exists      "git"
 program_exists      "vim"
 
 #do_backup
+#echo "BASH_SOURCE: ${BASH_SOURCE[0]}"
+#echo "DIR: $( dirname "${BASH_SOURCE[0]}" )"$("/../")
+#echo $DIR
+echo "VIMDIR: $VIMDIR"
 
-#create_symlinks     "$APP_PATH" \
-#                    "$HOME"
-#
+create_symlinks     "$VIMDIR" \
+                    "$HOME"
+
 #sync_repo           "$HOME/.vim/bundle/vundle" \
 #                    "$VUNDLE_URI" \
 #                    "master" \
