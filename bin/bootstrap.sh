@@ -38,6 +38,14 @@ program_exists() {
     fi
 }
 
+lnif() {
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+    ret="$?"
+    #debug
+}
+
 create_symlinks() {
     local source_path="$1"
     local target_path="$2"
