@@ -1,4 +1,7 @@
 
+	" Basics {
+		set nocompatible
+	" }
 " Setup Bundle Support {
     " The next three lines ensure that the ~/.vim/bundle/ system works
     filetype off

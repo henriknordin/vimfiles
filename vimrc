@@ -16,9 +16,6 @@
         endfunction
 	" }
 
-	" Basics {
-		set nocompatible
-	" }
 
     " Windows Compatible {
         " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
