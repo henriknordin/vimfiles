@@ -89,3 +89,7 @@ set t_Co=256
 
 " }
 
+" Airline {
+    set laststatus=2    " statusline available even before split
+" }
+
