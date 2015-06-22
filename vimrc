@@ -87,6 +87,11 @@ set t_Co=256
 
     autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
 
+    " For markdown, allow line wrapping but do not break words apart
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.md set wrap
+    autocmd BufRead,BufNewFile *.md set linebreak
+
 " }
 
 " Airline {
