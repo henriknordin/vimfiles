@@ -16,9 +16,10 @@
         " Themes
         Plugin 'altercation/vim-colors-solarized'
         Plugin 'tpope/vim-vividchalk'
-
+ 
         " UI
         Plugin 'bling/vim-airline'
+        Plugin 'kien/ctrlp.vim'
 
         " General programming
         Bundle 'scrooloose/syntastic'
